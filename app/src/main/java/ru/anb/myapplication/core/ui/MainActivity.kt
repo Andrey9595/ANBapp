@@ -1,4 +1,4 @@
-package ru.anb.myapplication
+package ru.anb.myapplication.core.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

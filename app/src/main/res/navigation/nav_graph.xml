@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="ru.anb.myapplication.ui.AuthFragment"
+        android:name="ru.anb.myapplication.features.auth.ui.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrFragment"
-        android:name="ru.anb.myapplication.ui.RegistrFragment"
+        android:name="ru.anb.myapplication.features.auth.ui.RegisterFragment"
         android:label="fragment_registr"
         tools:layout="@layout/fragment_registr" />
 </navigation>
