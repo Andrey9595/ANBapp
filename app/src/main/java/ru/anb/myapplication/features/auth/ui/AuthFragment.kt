@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.anb.myapplication.R
 import ru.anb.myapplication.databinding.FragmentAuthBinding
 
 @AndroidEntryPoint
@@ -33,6 +35,9 @@ class AuthFragment : Fragment() {
                 login = binding.mailText.text.toString(),
                 password = binding.passwordText.text.toString()
             )
+        }
+        binding.registrationEnter.setOnClickListener {
+            findNavController().navigate(R.id.action_authFragment_to_registrFragment)
         }
     }
 
