@@ -4,28 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.anb.myapplication.R
+import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentAuthBinding
 
 @AndroidEntryPoint
-class AuthFragment : Fragment() {
-
-    private var _binding: FragmentAuthBinding? = null
-    private val binding get() = _binding!!
-    private val viewModel: AuthViewModel by viewModels()
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAuthBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+class AuthFragment : BaseFragment<FragmentAuthBinding, AuthViewModel>() {
+    override val bindingInflater: (LayoutInflater, ViewGroup?) -> FragmentAuthBinding =
+        { inflater, container ->
+            FragmentAuthBinding.inflate(inflater, container, false)
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,10 +29,5 @@ class AuthFragment : Fragment() {
         binding.registrationEnter.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_registrFragment)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

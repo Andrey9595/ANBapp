@@ -4,25 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentRegistrBinding
 
 @AndroidEntryPoint
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment<FragmentRegistrBinding, RegistrationViewModel>() {
 
-    private var _binding: FragmentRegistrBinding? = null
-    private val binding get() = _binding!!
-    private val viewModel: RegistrationViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentRegistrBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?) -> FragmentRegistrBinding =
+        { inflater, container ->
+            FragmentRegistrBinding.inflate(inflater, container, false)
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,8 +29,4 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
