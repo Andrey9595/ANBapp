@@ -5,6 +5,11 @@
     <string name="auth_error_message">Error</string>
     <string name="login_error">Login should be at list 2 signs</string>
     <string name="name_error">Name should be at list 2 signs</string>
-    <string name="password_error">Passwords should be equals</string>
+    <string name="password_error">Passwords should be the same</string>
     <string name="password_length_error">Passwords should be at least 6 signs</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="name">Name</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="check_password">Check Password</string>
 </resources>

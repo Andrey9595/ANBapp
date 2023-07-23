@@ -11,7 +11,7 @@ abstract class CustomInputLayout @JvmOverloads constructor(
 ) : TextInputLayout(context, attrs, defStyleAttr), Validation {
     
     protected abstract val errorMessageId: Int
-    private val textWatcher = CreateMeetupTextWatcher { error = "" }
+    private val textWatcher = RegistrationTextWatcher { error = "" }
     
     fun text() = editText?.text.toString()
     
