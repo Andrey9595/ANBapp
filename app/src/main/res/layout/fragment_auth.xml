@@ -6,36 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".features.auth.ui.AuthFragment">
 
-
-    <EditText
+    <ru.anb.myapplication.features.auth.ui.input.PasswordInput
         android:id="@+id/password_text"
-        android:layout_width="wrap_content"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPassword"
+        android:hint="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mail_text" />
+        app:layout_constraintTop_toBottomOf="@+id/login_text">
 
-    <EditText
-        android:id="@+id/mail_text"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </ru.anb.myapplication.features.auth.ui.input.PasswordInput>
+
+    <ru.anb.myapplication.features.auth.ui.input.LoginInput
+        android:id="@+id/login_text"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="64dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
+        android:hint="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </ru.anb.myapplication.features.auth.ui.input.LoginInput>
 
     <Button
         android:id="@+id/enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="32dp"
-        android:text="Войти"
+        android:text="@string/sign_in"
+        app:layout_constraintEnd_toStartOf="@+id/registration_enter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_text" />
 
@@ -43,10 +58,8 @@
         android:id="@+id/registration_enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="64dp"
-        android:text="Зарегистрироваться"
+        android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/enter"
         app:layout_constraintTop_toBottomOf="@+id/password_text" />

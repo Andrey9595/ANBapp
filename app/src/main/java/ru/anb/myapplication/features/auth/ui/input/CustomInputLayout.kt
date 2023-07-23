@@ -13,7 +13,7 @@ abstract class CustomInputLayout @JvmOverloads constructor(
     protected abstract val errorMessageId: Int
     private val textWatcher = RegistrationTextWatcher { error = "" }
     
-    fun text() = editText?.text.toString()
+    open fun text() = editText?.text.toString()
     
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()

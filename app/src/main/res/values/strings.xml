@@ -7,9 +7,10 @@
     <string name="name_error">Name should be at list 2 signs</string>
     <string name="password_error">Passwords should be the same</string>
     <string name="password_length_error">Passwords should be at least 6 signs</string>
-    <string name="sign_up">Зарегистрироваться</string>
+    <string name="sign_up">Sign Up</string>
     <string name="name">Name</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="check_password">Check Password</string>
+    <string name="sign_in">Sign In</string>
 </resources>
