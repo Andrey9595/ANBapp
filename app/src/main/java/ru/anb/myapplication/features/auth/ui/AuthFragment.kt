@@ -11,32 +11,34 @@ import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentAuthBinding
 
 @AndroidEntryPoint
-class AuthFragment : BaseFragment<FragmentAuthBinding, AuthViewModel>() {
+class AuthFragment : BaseFragment<FragmentAuthBinding>() {
+    
     override val bindingInflater: (LayoutInflater, ViewGroup?) -> FragmentAuthBinding =
         { inflater, container ->
             FragmentAuthBinding.inflate(inflater, container, false)
         }
-
+    private val viewModel: AuthViewModel by lazy { initViewModel() }
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
         val inputList = listOf(
             binding.loginText,
             binding.passwordText
         )
-
+        
         binding.enter.setOnClickListener {
-
+            
             val allValidation = inputList.map { it.isValid() }
-
+            
             if (allValidation.all { it }) {
-//                viewModel.sendAuthRequest(
-//                    login = binding.loginText.text(),
-//                    password = binding.passwordText.text()
-//                )
+                viewModel.sendAuthRequest(
+                    login = binding.loginText.text(),
+                    password = binding.passwordText.text()
+                )
             }
         }
-
+        
         binding.registrationEnter.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_registrFragment)
         }
