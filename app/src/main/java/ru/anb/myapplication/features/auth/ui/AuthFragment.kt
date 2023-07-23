@@ -19,13 +19,24 @@ class AuthFragment : BaseFragment<FragmentAuthBinding, AuthViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val inputList = listOf(
+            binding.loginText,
+            binding.passwordText
+        )
+
         binding.enter.setOnClickListener {
 
-            viewModel.sendAuthRequest(
-                login = binding.mailText.text.toString(),
-                password = binding.passwordText.text.toString()
-            )
+            val allValidation = inputList.map { it.isValid() }
+
+            if (allValidation.all { it }) {
+//                viewModel.sendAuthRequest(
+//                    login = binding.loginText.text(),
+//                    password = binding.passwordText.text()
+//                )
+            }
         }
+
         binding.registrationEnter.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_registrFragment)
         }

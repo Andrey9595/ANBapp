@@ -31,4 +31,8 @@ class PasswordLayout @JvmOverloads constructor(
         binding.checkPassword.isValid()
         return binding.password.text() == binding.checkPassword.text()
     }
+
+    override fun text(): String {
+        return binding.password.text()
+    }
 }
