@@ -30,10 +30,10 @@ class AuthFragment : BaseFragment<FragmentAuthBinding, AuthViewModel>() {
             val allValidation = inputList.map { it.isValid() }
 
             if (allValidation.all { it }) {
-                viewModel.sendAuthRequest(
-                    login = binding.loginText.text(),
-                    password = binding.passwordText.text()
-                )
+//                viewModel.sendAuthRequest(
+//                    login = binding.loginText.text(),
+//                    password = binding.passwordText.text()
+//                )
             }
         }
 

@@ -31,13 +31,12 @@ class RegisterFragment : BaseFragment<FragmentRegistrBinding, RegistrationViewMo
 
             if (allValidation.all { it }) {
 
-                viewModel.sendRegistrationRequest(
-                    login = binding.editLogin.text(),
-                    password = binding.passwordLayout.text(),
-                    name = binding.editName.text()
-                )
+//                viewModel.sendRegistrationRequest(
+//                    login = binding.editLogin.text(),
+//                    password = binding.passwordLayout.text(),
+//                    name = binding.editName.text()
+//                )
             }
         }
     }
-
 }
