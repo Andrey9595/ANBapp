@@ -3,7 +3,7 @@ package ru.anb.myapplication.features.auth.ui.input
 import android.text.Editable
 import android.text.TextWatcher
 
-class CreateMeetupTextWatcher(private val onTextChanged: () -> Unit) : TextWatcher {
+class RegistrationTextWatcher(private val onTextChanged: () -> Unit) : TextWatcher {
     
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
     
