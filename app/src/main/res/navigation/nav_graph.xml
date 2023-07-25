@@ -19,4 +19,9 @@
         android:name="ru.anb.myapplication.features.auth.ui.RegisterFragment"
         android:label="fragment_registr"
         tools:layout="@layout/fragment_registr" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ru.anb.myapplication.features.home.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>
