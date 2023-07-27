@@ -9,12 +9,14 @@ import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentRegistrBinding
 
 @AndroidEntryPoint
-class RegisterFragment : BaseFragment<FragmentRegistrBinding, RegistrationViewModel>() {
+class RegisterFragment : BaseFragment<FragmentRegistrBinding>() {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?) -> FragmentRegistrBinding =
         { inflater, container ->
             FragmentRegistrBinding.inflate(inflater, container, false)
         }
+
+    private val viewModel: RegistrationViewModel by lazy { initViewModel() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,11 +33,11 @@ class RegisterFragment : BaseFragment<FragmentRegistrBinding, RegistrationViewMo
 
             if (allValidation.all { it }) {
 
-//                viewModel.sendRegistrationRequest(
-//                    login = binding.editLogin.text(),
-//                    password = binding.passwordLayout.text(),
-//                    name = binding.editName.text()
-//                )
+                viewModel.sendRegistrationRequest(
+                    login = binding.editLogin.text(),
+                    password = binding.passwordLayout.text(),
+                    name = binding.editName.text()
+                )
             }
         }
     }
