@@ -22,21 +22,21 @@ class RegisterFragment : BaseFragment<FragmentRegistrBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         val inputList = listOf(
-            binding.editLogin,
-            binding.editName,
-            binding.passwordLayout
+            binding.signUpLogin,
+            binding.signUpName,
+            binding.signUpPasswordLayout
         )
 
-        binding.registration.setOnClickListener {
+        binding.startSignUp.setOnClickListener {
 
             val allValidation = inputList.map { it.isValid() }
 
             if (allValidation.all { it }) {
 
                 viewModel.sendRegistrationRequest(
-                    login = binding.editLogin.text(),
-                    password = binding.passwordLayout.text(),
-                    name = binding.editName.text()
+                    login = binding.signUpLogin.text(),
+                    password = binding.signUpPasswordLayout.text(),
+                    name = binding.signUpName.text()
                 )
             }
         }

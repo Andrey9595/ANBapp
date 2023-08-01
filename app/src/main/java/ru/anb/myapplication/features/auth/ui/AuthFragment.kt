@@ -23,23 +23,23 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         val inputList = listOf(
-            binding.loginText,
-            binding.passwordText
+            binding.authLogin,
+            binding.authPassword
         )
 
-        binding.enter.setOnClickListener {
+        binding.signIn.setOnClickListener {
 
             val allValidation = inputList.map { it.isValid() }
 
             if (allValidation.all { it }) {
                 viewModel.sendAuthRequest(
-                    login = binding.loginText.text(),
-                    password = binding.passwordText.text()
+                    login = binding.authLogin.text(),
+                    password = binding.authPassword.text()
                 )
             }
         }
 
-        binding.registrationEnter.setOnClickListener {
+        binding.navigateToSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_registrFragment)
         }
     }
