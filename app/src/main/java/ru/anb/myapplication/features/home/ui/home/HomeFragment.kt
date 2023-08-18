@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.ui
+package ru.anb.myapplication.features.home.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

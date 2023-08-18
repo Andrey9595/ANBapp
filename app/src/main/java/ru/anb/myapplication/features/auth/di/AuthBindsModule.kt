@@ -1,4 +1,4 @@
-package ru.anb.myapplication.core.di
+package ru.anb.myapplication.features.auth.di
 
 import dagger.Binds
 import dagger.Module
@@ -12,7 +12,7 @@ import ru.anb.myapplication.features.auth.domain.AuthUseCase
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class AuthModule {
+abstract class AuthBindsModule {
 
     @Binds
     abstract fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
