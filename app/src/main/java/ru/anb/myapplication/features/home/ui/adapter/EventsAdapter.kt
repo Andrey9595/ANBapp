@@ -5,6 +5,10 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.anb.myapplication.R
+import ru.anb.myapplication.core.extensions.asString
+import ru.anb.myapplication.core.extensions.toLocalDateTime
 import ru.anb.myapplication.databinding.CardEventBinding
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 
@@ -27,10 +31,19 @@ class EventsViewHolder(private val binding: CardEventBinding) :
 
     fun bind(item: EventsModel) {
         with(binding) {
-            this.dateOfEvent.text = item.datetime
+            name.text = item.author
+            published.text = item.published.take(19).toLocalDateTime().asString()
+            content.text = item.content
+            dateOfEvent.text = item.datetime.take(19).toLocalDateTime().asString()
+            webText.text = item.link
+            typeOfEvent.text = item.type
+            speakers.text = item.speakerIds.map { item.users[it]?.name }.joinToString(", ")
+            interactionPosts.likeBtn.text = item.likeOwnerIds.size.toString()
+            interactionPosts.mentioned.text = item.participantsIds.size.toString()
+            Glide.with(avatar.context).load(item.authorAvatar).circleCrop()
+                .placeholder(R.drawable.ic_baseline_account_circle_24).into(avatar)
         }
     }
-
 }
 
 class EventsDiffCallback : DiffUtil.ItemCallback<EventsModel>() {

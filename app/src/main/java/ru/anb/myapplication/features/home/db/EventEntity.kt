@@ -1,8 +1,15 @@
-package ru.anb.myapplication.features.home.domain.model
+package ru.anb.myapplication.features.home.db
 
-import ru.anb.myapplication.features.home.db.EventEntity
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import ru.anb.myapplication.features.home.domain.model.Attachment
+import ru.anb.myapplication.features.home.domain.model.EventsModel
+import ru.anb.myapplication.features.home.domain.model.UserPreview
 
-data class EventsModel(
+@Entity
+data class EventEntity(
+    @PrimaryKey
     val id: Long,
     val authorId: Long, //
     val author: String,
@@ -18,13 +25,15 @@ data class EventsModel(
     val speakerIds: List<Long>,
     val participantsIds: List<Long>,
     val participatedByMe: Boolean,
+    @Embedded
     val attachment: Attachment?,//
     val link: String?,
     val ownedByMe: Boolean,
     val users: Map<Long, UserPreview>
 ) {
-    fun toEventEntity(): EventEntity {
-        return EventEntity(
+
+    fun toEventModel(): EventsModel {
+        return EventsModel(
             id,
             authorId,
             author,
