@@ -16,8 +16,8 @@ data class EventsModel(
     val speakerIds: List<Long>,
     val participantsIds: List<Long>,
     val participatedByMe: Boolean,
-//    val attachment: Attachment?,
+    val attachment: Attachment?,
     val link: String?,
     val ownedByMe: Boolean,
-//    val users: Map<Long, UserPreview>
+    val users: Map<Long, UserPreview>
 )
