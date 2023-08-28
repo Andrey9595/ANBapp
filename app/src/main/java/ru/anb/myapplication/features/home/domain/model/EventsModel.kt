@@ -1,5 +1,7 @@
 package ru.anb.myapplication.features.home.domain.model
 
+import ru.anb.myapplication.features.home.db.EventEntity
+
 data class EventsModel(
     val id: Long,
     val authorId: Long,

@@ -1,6 +1,9 @@
 package ru.anb.myapplication.features.home.domain.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Attachment(
     val url: String,
-    val attachmentType: String
+   @SerializedName("type")
+    val attachmentType: String?
 )

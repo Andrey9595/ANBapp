@@ -11,15 +11,15 @@ interface EventsApi {
     @GET("/api/events/")
     suspend fun getAll(): Response<List<EventsModel>>
 
-    @GET("events/latest")
+    @GET("/api/events/latest")
     suspend fun getLatest(@Query("count") count: Int): Response<List<EventsModel>>
 
-    @GET("events/{event_id}/before")
+    @GET("/api/events/{event_id}/before")
     suspend fun getBefore(@Path("event_id")id:Long, @Query("count") count: Int): Response<List<EventsModel>>
 
-    @GET("events/{event_id}/after")
+    @GET("/api/events/{event_id}/after")
     suspend fun getAfter(@Path("event_id")id:Long, @Query("count") count: Int): Response<List<EventsModel>>
 
-    @GET("events/{event_id}/newer")
+    @GET("/api/events/{event_id}/newer")
     suspend fun getNewer(@Path("event_id") id: Long): Response<List<EventsModel>>
 }
