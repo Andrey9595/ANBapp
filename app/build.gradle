@@ -31,6 +31,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_18
         targetCompatibility JavaVersion.VERSION_18
     }
@@ -48,6 +49,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Format date
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 
     // Lifecycle
     def lifecycleVersion = "2.6.1"
@@ -87,8 +91,19 @@ dependencies {
     def roomVersion = "2.5.2"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-paging:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
     // Preferences DataStore
     implementation "androidx.datastore:datastore-preferences:1.1.0-alpha04"
+
+    // Swipe refresh layout
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    // Paging
+    def paging_version = "3.2.0"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // GSON
+    implementation 'com.google.code.gson:gson:2.9.0'
 }

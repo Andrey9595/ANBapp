@@ -8,7 +8,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.anb.myapplication.features.auth.data.AuthApi
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -34,12 +33,6 @@ class RemoteDataSourceModule {
                 it.level = HttpLoggingInterceptor.Level.BODY
             })
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideAuthApi(retrofit: Retrofit): AuthApi {
-        return retrofit.create(AuthApi::class.java)
     }
 
     companion object {

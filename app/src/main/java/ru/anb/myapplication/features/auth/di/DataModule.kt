@@ -1,4 +1,4 @@
-package ru.anb.myapplication.core.di
+package ru.anb.myapplication.features.auth.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
