@@ -1,7 +1,6 @@
 package ru.anb.myapplication.features.home.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,8 +38,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }.attach()
 
         binding.includedAppBar.appBarImage.setOnClickListener {
-            Log.d("aaaa", "clicg")
-            showAuthMenu(it)
+            if (viewModel.isAuthorized.value)
+                showProfileMenu(it)
+            else showAuthMenu(it)
         }
     }
 
@@ -50,7 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         profileMenu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.profileBtn -> {
-                    Toast.makeText(requireContext(), "перехед в профиль", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.profileFragment)
                 }
 
                 R.id.logout -> {
@@ -63,14 +63,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         profileMenu.show()
     }
 
-    private fun showAuthMenu(view: View){
+    private fun showAuthMenu(view: View) {
         val menu = PopupMenu(requireContext(), view)
         menu.inflate(R.menu.menu_main)
         menu.setOnMenuItemClickListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.signIn -> {
                     findNavController().navigate(R.id.authFragment)
                 }
+
                 R.id.signUp -> {
                     findNavController().navigate(R.id.registrFragment)
                 }
