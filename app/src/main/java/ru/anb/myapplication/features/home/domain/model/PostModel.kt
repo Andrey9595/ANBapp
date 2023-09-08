@@ -1,0 +1,23 @@
+package ru.anb.myapplication.features.home.domain.model
+
+import java.time.LocalDateTime
+
+data class PostModel(
+    val id: Long,
+    val authorId: Long,
+    val author: String,
+    val authorAvatar: String?,
+    val authorJob: String?,
+    var content: String,
+    val published: LocalDateTime?,
+    var coords: CoordinatesModel?,
+    var link: String?,
+    var likeOwnerIds: List<Long>?,
+    var mentionIds: List<Long>,
+    val mentionMe: Boolean,
+    val likedByMe: Boolean,
+    val attachment: AttachmentModel?,
+    var playBtnPressed: Boolean = false,
+    val ownedByMe: Boolean,
+    val users: Map<Long, UserPreview>
+)

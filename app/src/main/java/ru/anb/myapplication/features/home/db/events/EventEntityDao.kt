@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.db
+package ru.anb.myapplication.features.home.db.events
 
 import androidx.paging.PagingSource
 import androidx.room.Dao

@@ -7,10 +7,10 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import ru.anb.myapplication.core.data.AppDatabase
 import ru.anb.myapplication.features.auth.data.PersistentStore
-import ru.anb.myapplication.features.home.data.EventsApi
-import ru.anb.myapplication.features.home.data.EventsMediator
-import ru.anb.myapplication.features.home.domain.IsAuthorizedUseCase
-import ru.anb.myapplication.features.home.domain.LogOutUseCase
+import ru.anb.myapplication.features.home.data.events.EventsApi
+import ru.anb.myapplication.features.home.data.events.EventsMediator
+import ru.anb.myapplication.features.profile.domain.IsAuthorizedUseCase
+import ru.anb.myapplication.features.profile.domain.LogOutUseCase
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)

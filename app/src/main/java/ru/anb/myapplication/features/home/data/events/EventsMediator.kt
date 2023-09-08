@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.data
+package ru.anb.myapplication.features.home.data.events
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
@@ -6,8 +6,9 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import ru.anb.myapplication.core.data.AppDatabase
-import ru.anb.myapplication.features.home.db.EventEntity
-import ru.anb.myapplication.features.home.db.EventRemoteKeyEntity
+import ru.anb.myapplication.features.home.db.events.EventEntity
+import ru.anb.myapplication.features.home.db.events.EventRemoteKeyEntity
+import ru.anb.myapplication.features.home.db.events.KeyType
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
@@ -54,11 +55,11 @@ class EventsMediator(private val api: EventsApi, private val db: AppDatabase) :
                         keyDao.insert(
                             listOf(
                                 EventRemoteKeyEntity(
-                                    EventRemoteKeyEntity.KeyType.BEFORE,
+                                    KeyType.BEFORE,
                                     body.last().id
                                 ),
                                 EventRemoteKeyEntity(
-                                    EventRemoteKeyEntity.KeyType.AFTER,
+                                    KeyType.AFTER,
                                     body.first().id
                                 )
                             )
@@ -70,7 +71,7 @@ class EventsMediator(private val api: EventsApi, private val db: AppDatabase) :
                         if (body.isNotEmpty()) {
                             keyDao.insert(
                                 EventRemoteKeyEntity(
-                                    EventRemoteKeyEntity.KeyType.BEFORE,
+                                    KeyType.BEFORE,
                                     body.last().id
                                 )
                             )

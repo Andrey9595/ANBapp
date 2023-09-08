@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.anb.myapplication.features.home.data.EventsRepositoryImpl
-import ru.anb.myapplication.features.home.domain.EventsRepository
-import ru.anb.myapplication.features.home.domain.IsAuthorizedUseCase
-import ru.anb.myapplication.features.home.domain.LogOutUseCase
+import ru.anb.myapplication.features.home.data.events.EventsRepositoryImpl
+import ru.anb.myapplication.features.home.domain.events.EventsRepository
+import ru.anb.myapplication.features.profile.domain.IsAuthorizedUseCase
+import ru.anb.myapplication.features.profile.domain.LogOutUseCase
 
 @InstallIn(SingletonComponent::class)
 @Module

@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.data
+package ru.anb.myapplication.features.home.data.events
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -8,7 +8,7 @@ import androidx.paging.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.anb.myapplication.core.data.AppDatabase
-import ru.anb.myapplication.features.home.domain.EventsRepository
+import ru.anb.myapplication.features.home.domain.events.EventsRepository
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 import javax.inject.Inject
 

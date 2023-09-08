@@ -3,11 +3,11 @@ package ru.anb.myapplication.core.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import ru.anb.myapplication.features.home.db.EventEntity
-import ru.anb.myapplication.features.home.db.EventEntityDao
-import ru.anb.myapplication.features.home.db.EventRemoteKeyDao
-import ru.anb.myapplication.features.home.db.EventRemoteKeyEntity
 import ru.anb.myapplication.features.home.db.Convertor
+import ru.anb.myapplication.features.home.db.events.EventEntity
+import ru.anb.myapplication.features.home.db.events.EventEntityDao
+import ru.anb.myapplication.features.home.db.events.EventRemoteKeyDao
+import ru.anb.myapplication.features.home.db.events.EventRemoteKeyEntity
 
 @Database(
     entities = [

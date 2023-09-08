@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import ru.anb.myapplication.features.home.domain.EventsRepository
+import ru.anb.myapplication.features.home.domain.events.EventsRepository
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 import javax.inject.Inject
 

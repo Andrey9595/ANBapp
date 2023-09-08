@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.db
+package ru.anb.myapplication.features.home.db.events
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,8 +9,9 @@ data class EventRemoteKeyEntity (
     val type: KeyType,
     val key: Long
 ) {
-    enum class KeyType {
-        AFTER,
-        BEFORE
-    }
+
+}
+enum class KeyType {
+    AFTER,
+    BEFORE
 }

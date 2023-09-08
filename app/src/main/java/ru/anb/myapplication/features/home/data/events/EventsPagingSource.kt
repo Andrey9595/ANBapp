@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.data
+package ru.anb.myapplication.features.home.data.events
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
