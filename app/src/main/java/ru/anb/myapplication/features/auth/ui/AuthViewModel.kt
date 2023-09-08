@@ -8,13 +8,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.anb.myapplication.core.domain.LoadState
-import ru.anb.myapplication.features.auth.domain.AuthRepository
-import ru.anb.myapplication.features.auth.domain.model.AuthenticationBody
+import ru.anb.myapplication.features.auth.domain.AuthUseCase
 import ru.anb.myapplication.features.auth.domain.model.Token
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val repository: AuthRepository) :
+class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) :
     ViewModel() {
 
     private val _authState = MutableStateFlow<LoadState<Token>>(LoadState.NotLoadedYet())
@@ -22,7 +21,7 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepository) 
 
     fun sendAuthRequest(login: String, password: String) {
         viewModelScope.launch {
-            val result = repository.auth(AuthenticationBody(login, password))
+            val result = authUseCase.signIn(login, password)
             _authState.value = result
         }
     }

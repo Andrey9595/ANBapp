@@ -4,9 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import ru.anb.myapplication.R
+import ru.anb.myapplication.core.domain.LoadState
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentAuthBinding
 
@@ -17,7 +24,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
             FragmentAuthBinding.inflate(inflater, container, false)
         }
 
-    private val viewModel: AuthViewModel by lazy { initViewModel() }
+    private val viewModel: AuthViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,9 +45,24 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
                 )
             }
         }
-
         binding.navigateToSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_registrFragment)
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.authState.collect {
+                    when (it) {
+                        is LoadState.Loading -> {}
+                        is LoadState.Success -> {
+                            findNavController().navigate(R.id.homeFragment)
+                        }
+
+                        is LoadState.Error -> {
+                            Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
         }
     }
 }

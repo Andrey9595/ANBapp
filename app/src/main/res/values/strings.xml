@@ -14,4 +14,6 @@
     <string name="check_password">Check Password</string>
     <string name="sign_in">Sign In</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="Profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -16,7 +17,7 @@ import ru.anb.myapplication.features.home.ui.adapter.EventsAdapter
 class EventsFragment : BaseFragment<FragmentEventsBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?) -> FragmentEventsBinding =
         { inflater, container -> FragmentEventsBinding.inflate(inflater, container, false) }
-    private val viewModel: EventsViewModel by lazy { initViewModel() }
+    private val viewModel: EventsViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
