@@ -9,4 +9,6 @@ interface PersistentStore {
     suspend fun getUserId(): Int?
 
     suspend fun isAuthorized(): Boolean
+
+    suspend fun removeToken(): Boolean
 }

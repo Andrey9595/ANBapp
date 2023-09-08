@@ -28,4 +28,16 @@ class PersistentStoreImpl @Inject constructor(private val dataStore: DataStore<P
     override suspend fun isAuthorized(): Boolean {
         return dataStore.edit { }.contains(tokenKay)
     }
+
+    override suspend fun removeToken(): Boolean {
+        return try {
+            dataStore.edit {
+                it.remove(tokenKay)
+                it.remove(idKey)
+            }
+            true
+        } catch (e: Exception){
+            false
+        }
+    }
 }

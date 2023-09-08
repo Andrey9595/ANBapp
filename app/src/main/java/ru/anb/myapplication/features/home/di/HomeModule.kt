@@ -6,13 +6,16 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import ru.anb.myapplication.core.data.AppDatabase
+import ru.anb.myapplication.features.auth.data.PersistentStore
 import ru.anb.myapplication.features.home.data.EventsApi
 import ru.anb.myapplication.features.home.data.EventsMediator
+import ru.anb.myapplication.features.home.domain.IsAuthorizedUseCase
+import ru.anb.myapplication.features.home.domain.LogOutUseCase
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class EventsModule {
+class HomeModule {
 
     @Provides
     @Singleton
@@ -24,5 +27,15 @@ class EventsModule {
     @Singleton
     fun provideEventsMediator(api: EventsApi, db: AppDatabase): EventsMediator {
         return EventsMediator(api, db)
+    }
+
+    @Provides
+    fun provideIsAuthorizedUseCase(persistentStore: PersistentStore): IsAuthorizedUseCase.Base {
+        return IsAuthorizedUseCase.Base(persistentStore)
+    }
+
+    @Provides
+    fun provideLogOutUseCase(persistentStore: PersistentStore): LogOutUseCase.Base {
+        return LogOutUseCase.Base(persistentStore)
     }
 }

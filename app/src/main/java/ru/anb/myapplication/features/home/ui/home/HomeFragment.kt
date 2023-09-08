@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             FragmentHomeBinding.inflate(inflater, container, false)
         }
 
-    private val viewModel: HomeViewModel by lazy { initViewModel() }
+    private val viewModel: HomeViewModel by viewModels()
 
     private val fragTitles = listOf(
         "Записи",
@@ -31,6 +31,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = HomeViewPagerAdapter(this)
+        viewModel.isUserAuthorized()
+
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, pos ->
@@ -54,7 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
 
                 R.id.logout -> {
-                    Toast.makeText(requireContext(), "выход из профиля", Toast.LENGTH_SHORT).show()
+                    viewModel.logOut()
                 }
 
             }

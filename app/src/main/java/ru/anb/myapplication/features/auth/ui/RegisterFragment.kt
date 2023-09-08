@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -24,7 +25,7 @@ class RegisterFragment : BaseFragment<FragmentRegistrBinding>() {
             FragmentRegistrBinding.inflate(inflater, container, false)
         }
 
-    private val viewModel: RegistrationViewModel by lazy { initViewModel() }
+    private val viewModel: RegistrationViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -6,11 +6,19 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.anb.myapplication.features.home.data.EventsRepositoryImpl
 import ru.anb.myapplication.features.home.domain.EventsRepository
+import ru.anb.myapplication.features.home.domain.IsAuthorizedUseCase
+import ru.anb.myapplication.features.home.domain.LogOutUseCase
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class EventsBindsModule {
+abstract class HomeBindsModule {
 
     @Binds
     abstract fun bindEventsRepository(eventsRepositoryImpl: EventsRepositoryImpl): EventsRepository
+
+    @Binds
+    abstract fun bindIsAuthAuthorized(isAuthorizedUseCase: IsAuthorizedUseCase.Base): IsAuthorizedUseCase
+
+    @Binds
+    abstract fun bindLogOutUseCase(logOutUseCase: LogOutUseCase.Base): LogOutUseCase
 }
