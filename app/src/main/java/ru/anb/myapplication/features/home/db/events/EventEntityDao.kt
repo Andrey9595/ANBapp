@@ -5,22 +5,23 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import ru.anb.myapplication.features.home.db.ContentEntityDao
 
 @Dao
-interface EventEntityDao {
+interface EventEntityDao: ContentEntityDao<EventEntity> {
 
     @Query("SELECT * FROM EventEntity ORDER BY id DESC")
-    fun getAll(): PagingSource<Int, EventEntity>
+    override fun getAll(): PagingSource<Int, EventEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(event: EventEntity)
+    override suspend fun insert(event: EventEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(events: List<EventEntity>)
+    override suspend fun insert(events: List<EventEntity>)
 
     @Query("SELECT * FROM EventEntity ORDER  BY id DESC")
-    fun  getPagingSource(): PagingSource<Int, EventEntity>
+    override fun  getPagingSource(): PagingSource<Int, EventEntity>
 
     @Query("DELETE FROM EventEntity")
-    suspend fun clear()
+    override suspend fun clear()
 }

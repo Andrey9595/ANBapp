@@ -6,17 +6,20 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import ru.anb.myapplication.core.data.AppDatabase
+import ru.anb.myapplication.features.home.data.ContentApi
+import ru.anb.myapplication.features.home.db.ContentEntity
 import ru.anb.myapplication.features.home.db.events.EventEntity
 import ru.anb.myapplication.features.home.db.events.EventRemoteKeyEntity
 import ru.anb.myapplication.features.home.db.events.KeyType
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class EventsMediator(private val api: EventsApi, private val db: AppDatabase) :
+class EventsMediator<D,T: ContentEntity<D>, Api: ContentApi<T>, >(private val api:Api, private val db: AppDatabase) :
     RemoteMediator<Int, EventEntity>() {
 
     private val keyDao = db.getEventRemoteKeyDao()
     private val eventEntityDao = db.getEventEntityDao()
+    private val contentDao = db.
 
     override suspend fun load(
         loadType: LoadType,
@@ -82,7 +85,7 @@ class EventsMediator(private val api: EventsApi, private val db: AppDatabase) :
                 }
 
                 eventEntityDao.insert(
-                    body.map { it.toEventEntity() }
+                    body.map { it.toDomainModel() }
                 )
             }
 

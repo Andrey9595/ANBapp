@@ -5,21 +5,22 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import ru.anb.myapplication.features.home.db.ContentEntityDao
 
 @Dao
-interface PostEntityDao {
+interface PostEntityDao: ContentEntityDao<PostEntity> {
     @Query("SELECT * FROM PostEntity ORDER BY id DESC")
-    fun getAll(): PagingSource<Int, PostEntity>
+    override fun getAll(): PagingSource<Int, PostEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(post: PostEntity)
+    override suspend fun insert(post: PostEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(posts: List<PostEntity>)
+    override suspend fun insert(posts: List<PostEntity>)
 
     @Query("SELECT * FROM PostEntity ORDER  BY id DESC")
-    fun  getPagingSource(): PagingSource<Int, PostEntity>
+    override fun  getPagingSource(): PagingSource<Int, PostEntity>
 
     @Query("DELETE FROM PostEntity")
-    suspend fun clear()
+    override suspend fun clear()
 }

@@ -3,6 +3,7 @@ package ru.anb.myapplication.features.home.db.events
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ru.anb.myapplication.features.home.db.ContentEntity
 import ru.anb.myapplication.features.home.domain.model.Attachment
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 import ru.anb.myapplication.features.home.domain.model.UserPreview
@@ -10,7 +11,7 @@ import ru.anb.myapplication.features.home.domain.model.UserPreview
 @Entity
 data class EventEntity(
     @PrimaryKey
-    val id: Long,
+    override val id: Long,
     val authorId: Long, //
     val author: String,
     val authorAvatar: String?,
@@ -30,9 +31,9 @@ data class EventEntity(
     val link: String?,
     val ownedByMe: Boolean,
     val users: Map<Long, UserPreview>
-) {
+): ContentEntity<EventsModel>() {
 
-    fun toEventModel(): EventsModel {
+   override fun toDomainModel(): EventsModel {
         return EventsModel(
             id,
             authorId,

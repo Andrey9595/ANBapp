@@ -3,6 +3,7 @@ package ru.anb.myapplication.features.home.db.posts
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ru.anb.myapplication.features.home.db.ContentEntity
 import ru.anb.myapplication.features.home.domain.model.AttachmentModel
 import ru.anb.myapplication.features.home.domain.model.CoordinatesModel
 import ru.anb.myapplication.features.home.domain.model.PostModel
@@ -12,7 +13,7 @@ import java.time.LocalDateTime
 @Entity
 data class PostEntity(
     @PrimaryKey
-    val id: Long,
+    override val id: Long,
     val authorId: Long,
     val author: String,
     val authorAvatar: String?,
@@ -31,9 +32,9 @@ data class PostEntity(
     var playBtnPressed: Boolean = false,
     val ownedByMe: Boolean,
     val users: Map<Long, UserPreview>
-) {
+): ContentEntity<PostModel>() {
 
-    fun toPostModel(): PostModel {
+    override fun toDomainModel(): PostModel {
         return PostModel(
             id,
             authorId,
