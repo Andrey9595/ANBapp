@@ -16,4 +16,8 @@
     <string name="something_went_wrong">Something went wrong</string>
     <string name="Profile">Profile</string>
     <string name="logout">Logout</string>
+    <string name="default_site" translatable="false">www.google.com</string>
+    <string name="coala_text" translatable="false">Коала — это небольшой зверек. Длина взрослого самца около 80 см, а весит он приблизительно 15 кг. Самки немного меньше. Шерстка коал обычно серого цвета, с вкраплениями белого и иногда черного тона. Уши достаточно крупные, а глаза, наоборот, небольшие. Нос выпуклый, черного цвета. Конечности коалы полностью приспособлены для лазания по деревьям. На передних лапах у них пять пальцев — два находятся немного в стороне (как большие пальцы у людей).</string>
+    <string name="up">наверх</string>
+    <string name="empty_posts">Здесь пока нет постов. Создайте новый :)</string>
 </resources>

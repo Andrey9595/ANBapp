@@ -1,6 +1,6 @@
 package ru.anb.myapplication.features.home.domain.model
 
-import java.time.LocalDateTime
+import ru.anb.myapplication.features.home.db.posts.PostEntity
 
 data class PostModel(
     val id: Long,
@@ -9,7 +9,7 @@ data class PostModel(
     val authorAvatar: String?,
     val authorJob: String?,
     var content: String,
-    val published: LocalDateTime?,
+    val published: String?,
     var coords: CoordinatesModel?,
     var link: String?,
     var likeOwnerIds: List<Long>?,
@@ -20,4 +20,26 @@ data class PostModel(
     var playBtnPressed: Boolean = false,
     val ownedByMe: Boolean,
     val users: Map<Long, UserPreview>
-)
+) {
+    fun toPostEntity(): PostEntity {
+        return PostEntity(
+            id,
+            authorId,
+            author,
+            authorAvatar,
+            authorJob,
+            content,
+            published,
+            coords,
+            link,
+            likeOwnerIds,
+            mentionIds,
+            mentionMe,
+            likedByMe,
+            attachment,
+            playBtnPressed,
+            ownedByMe,
+            users
+        )
+    }
+}

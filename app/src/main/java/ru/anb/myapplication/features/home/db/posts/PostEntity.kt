@@ -7,7 +7,6 @@ import ru.anb.myapplication.features.home.domain.model.AttachmentModel
 import ru.anb.myapplication.features.home.domain.model.CoordinatesModel
 import ru.anb.myapplication.features.home.domain.model.PostModel
 import ru.anb.myapplication.features.home.domain.model.UserPreview
-import java.time.LocalDateTime
 
 @Entity
 data class PostEntity(
@@ -18,7 +17,7 @@ data class PostEntity(
     val authorAvatar: String?,
     val authorJob: String?,
     var content: String,
-    val published: LocalDateTime?,
+    val published: String?,
     @Embedded
     var coords: CoordinatesModel?,
     var link: String?,
