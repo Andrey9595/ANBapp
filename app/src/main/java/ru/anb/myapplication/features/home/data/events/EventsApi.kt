@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.data
+package ru.anb.myapplication.features.home.data.events
 
 import retrofit2.Response
 import retrofit2.http.GET

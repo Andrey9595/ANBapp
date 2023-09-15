@@ -7,8 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.anb.myapplication.features.home.domain.IsAuthorizedUseCase
-import ru.anb.myapplication.features.home.domain.LogOutUseCase
+import ru.anb.myapplication.features.profile.domain.IsAuthorizedUseCase
+import ru.anb.myapplication.features.profile.domain.LogOutUseCase
 import javax.inject.Inject
 
 @HiltViewModel

@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.domain
+package ru.anb.myapplication.features.home.domain.events
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow

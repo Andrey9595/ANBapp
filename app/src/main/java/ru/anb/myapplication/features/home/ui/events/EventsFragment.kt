@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentEventsBinding
 import ru.anb.myapplication.features.home.ui.adapter.EventsAdapter
@@ -25,5 +27,11 @@ class EventsFragment : BaseFragment<FragmentEventsBinding>() {
         binding.eventsList.adapter = adapter
         viewModel.sendGetAll().onEach { adapter.submitData(it) }
             .launchIn(viewLifecycleOwner.lifecycleScope)
+        viewLifecycleOwner.lifecycleScope.launch {
+            adapter.loadStateFlow.collect {
+                binding.swipeToRefresh.isRefreshing = it.refresh == LoadState.Loading
+            }
+        }
+        binding.swipeToRefresh.setOnRefreshListener { adapter.refresh() }
     }
 }

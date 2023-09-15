@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.home.domain
+package ru.anb.myapplication.features.profile.domain
 
 import ru.anb.myapplication.features.auth.data.PersistentStore
 import javax.inject.Inject
