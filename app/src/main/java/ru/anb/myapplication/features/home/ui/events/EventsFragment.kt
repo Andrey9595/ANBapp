@@ -8,8 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentEventsBinding
@@ -23,10 +22,13 @@ class EventsFragment : BaseFragment<FragmentEventsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = EventsAdapter()
+        val adapter = EventsAdapter(EventsInteractionListener(viewModel))
         binding.eventsList.adapter = adapter
-        viewModel.sendGetAll().onEach { adapter.submitData(it) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            viewModel.sendGetAll().collectLatest { adapter.submitData(it) }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collect {
                 binding.swipeToRefresh.isRefreshing = it.refresh == LoadState.Loading

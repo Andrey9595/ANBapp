@@ -17,12 +17,16 @@ class PersistentStoreImpl @Inject constructor(private val dataStore: DataStore<P
         dataStore.edit { prefs -> prefs[tokenKay] = token }
     }
 
+    override suspend fun getToken(): String? {
+        return dataStore.edit { }[tokenKay]
+    }
+
     override suspend fun savaId(id: Int) {
-       dataStore.edit { prefs -> prefs[idKey] = id }
+        dataStore.edit { prefs -> prefs[idKey] = id }
     }
 
     override suspend fun getUserId(): Int? {
-       return dataStore.edit { }[idKey]
+        return dataStore.edit { }[idKey]
     }
 
     override suspend fun isAuthorized(): Boolean {
@@ -36,7 +40,7 @@ class PersistentStoreImpl @Inject constructor(private val dataStore: DataStore<P
                 it.remove(idKey)
             }
             true
-        } catch (e: Exception){
+        } catch (e: Exception) {
             false
         }
     }

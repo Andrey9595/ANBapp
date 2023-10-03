@@ -12,7 +12,7 @@ import ru.anb.myapplication.features.home.db.events.KeyType
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class EventsMediator(private val api: EventsApi, private val db: AppDatabase) :
+class EventsMediator(private val api: EventsPagingApi, private val db: AppDatabase) :
     RemoteMediator<Int, EventEntity>() {
 
     private val keyDao = db.getEventRemoteKeyDao()
@@ -92,7 +92,7 @@ class EventsMediator(private val api: EventsApi, private val db: AppDatabase) :
         }
     }
 
-    companion object{
+    companion object {
         const val PAGE_SIZE = 10
         const val FIRST_PAGE = 1
     }

@@ -6,7 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 
-interface EventsApi {
+interface EventsPagingApi {
 
     @GET("/api/events/")
     suspend fun getAll(): Response<List<EventsModel>>
@@ -22,4 +22,5 @@ interface EventsApi {
 
     @GET("/api/events/{event_id}/newer")
     suspend fun getNewer(@Path("event_id") id: Long): Response<List<EventsModel>>
+
 }
