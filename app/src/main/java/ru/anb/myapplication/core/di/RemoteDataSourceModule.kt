@@ -8,6 +8,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.anb.myapplication.features.auth.data.PersistentStore
+import ru.anb.myapplication.features.home.data.events.AuthInterceptor
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -27,8 +29,9 @@ class RemoteDataSourceModule {
 
     @Provides
     @Singleton
-    fun provideOkhttpClient(): OkHttpClient {
+    fun provideOkhttpClient(persistentStore: PersistentStore): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(persistentStore))
             .addInterceptor(HttpLoggingInterceptor().also {
                 it.level = HttpLoggingInterceptor.Level.BODY
             })

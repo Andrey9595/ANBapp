@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 class EventsRepositoryImpl @Inject constructor(
     private val eventsMediator: EventsMediator,
-    private val db: AppDatabase
+    private val db: AppDatabase,
+    private val eventsInteractionApi: EventsInteractionApi
 ) : EventsRepository {
     private val eventEntityDao = db.getEventEntityDao()
 
@@ -25,5 +26,25 @@ class EventsRepositoryImpl @Inject constructor(
             pagingSourceFactory = { eventEntityDao.getPagingSource() },
             remoteMediator = eventsMediator
         ).flow.map { it.map { entity -> entity.toEventModel() } }
+    }
+
+    override suspend fun takeParticipation(id: Long) {
+        eventEntityDao.participate(id)
+        eventsInteractionApi.createParticipant(id)
+    }
+
+    override suspend fun removeParticipation(id: Long) {
+        eventEntityDao.participate(id)
+        eventsInteractionApi.removeParticipant(id)
+    }
+
+    override suspend fun likeById(t: EventsModel) {
+        eventEntityDao.likeById(t.id)
+        eventsInteractionApi.likeById(t.id)
+    }
+
+    override suspend fun dislikeById(t: EventsModel) {
+        eventEntityDao.likeById(t.id)
+        eventsInteractionApi.dislikeById(t.id)
     }
 }

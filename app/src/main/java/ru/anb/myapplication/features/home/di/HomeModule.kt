@@ -7,8 +7,9 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import ru.anb.myapplication.core.data.AppDatabase
 import ru.anb.myapplication.features.auth.data.PersistentStore
-import ru.anb.myapplication.features.home.data.events.EventsApi
+import ru.anb.myapplication.features.home.data.events.EventsInteractionApi
 import ru.anb.myapplication.features.home.data.events.EventsMediator
+import ru.anb.myapplication.features.home.data.events.EventsPagingApi
 import ru.anb.myapplication.features.home.data.posts.PostsApi
 import ru.anb.myapplication.features.home.db.events.PostsMediator
 import ru.anb.myapplication.features.profile.domain.IsAuthorizedUseCase
@@ -21,9 +22,10 @@ class HomeModule {
 
     @Provides
     @Singleton
-    fun provideEventsApi(retrofit: Retrofit): EventsApi {
-        return retrofit.create(EventsApi::class.java)
+    fun provideEventsApi(retrofit: Retrofit): EventsPagingApi {
+        return retrofit.create(EventsPagingApi::class.java)
     }
+
     @Provides
     @Singleton
     fun providePostsApi(retrofit: Retrofit): PostsApi {
@@ -32,7 +34,7 @@ class HomeModule {
 
     @Provides
     @Singleton
-    fun provideEventsMediator(api: EventsApi, db: AppDatabase): EventsMediator {
+    fun provideEventsMediator(api: EventsPagingApi, db: AppDatabase): EventsMediator {
         return EventsMediator(api, db)
     }
 
@@ -50,5 +52,11 @@ class HomeModule {
     @Singleton
     fun providePostsMediator(api: PostsApi, db: AppDatabase): PostsMediator {
         return PostsMediator(api, db)
+    }
+
+    @Provides
+    @Singleton
+    fun provideEventsInteractionApi(retrofit: Retrofit): EventsInteractionApi {
+        return retrofit.create(EventsInteractionApi::class.java)
     }
 }
