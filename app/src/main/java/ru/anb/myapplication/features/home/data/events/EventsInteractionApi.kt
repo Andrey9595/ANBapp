@@ -1,11 +1,9 @@
 package ru.anb.myapplication.features.home.data.events
 
 import retrofit2.Response
-import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.POST
 import retrofit2.http.Path
-import ru.anb.myapplication.features.home.domain.model.EventCreateRequest
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 
 interface EventsInteractionApi {
@@ -22,8 +20,7 @@ interface EventsInteractionApi {
     @DELETE("api/events/{event_id}/participants")
     suspend fun removeParticipant(@Path("event_id") id: Long) :Response<EventsModel>
 
-    @POST("api/events")
-    suspend fun save(@Body eventCreateRequest: EventCreateRequest): Response<EventsModel>
+
 
 //    @Multipart
 //    @POST("media")

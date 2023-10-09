@@ -6,5 +6,4 @@ interface BaseContentCRUD<T : Any, R : Any> {
 
     suspend fun dislikeById(t: T)
 
-    suspend fun save(r: R)
 }

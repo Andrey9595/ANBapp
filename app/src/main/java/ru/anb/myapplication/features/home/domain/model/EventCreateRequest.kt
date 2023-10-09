@@ -1,12 +1,12 @@
 package ru.anb.myapplication.features.home.domain.model
 
 data class EventCreateRequest (
-    val id: Long,
+    val id: Long  =0,
     val content: String,
     val datetime: String,
-    val coords: CoordinatesModel?,
-    val type: String,
-    val attachment: Attachment?,
-    val link: String?,
-    val speakerIds: List<Long>
+//    val coords: CoordinatesModel?,
+    val type: String = "ONLINE",
+//    val attachment: Attachment?,
+    val link: String = "www",
+    val speakerIds: List<Long> = emptyList()
 )

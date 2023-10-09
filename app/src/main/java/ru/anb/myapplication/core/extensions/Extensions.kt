@@ -7,4 +7,8 @@ import java.time.format.DateTimeFormatter
 
 fun LocalDateTime.asString(): String = format(DateTimeFormatter.ofPattern("dd MMMM yyyy в HH:mm"))
 
-fun String.toLocalDateTime(): LocalDateTime = LocalDateTime.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"))
+fun String.toLocalDateTime(): LocalDateTime =
+    LocalDateTime.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"))
+
+fun String.toLocalDateTimeWhithoutZone(): LocalDateTime =
+    LocalDateTime.parse(this, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))

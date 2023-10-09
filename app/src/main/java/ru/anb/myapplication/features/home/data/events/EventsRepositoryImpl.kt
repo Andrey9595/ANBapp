@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.anb.myapplication.core.data.AppDatabase
 import ru.anb.myapplication.features.home.domain.events.EventsRepository
-import ru.anb.myapplication.features.home.domain.model.EventCreateRequest
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 import javax.inject.Inject
 
@@ -47,12 +46,5 @@ class EventsRepositoryImpl @Inject constructor(
     override suspend fun dislikeById(t: EventsModel) {
         eventEntityDao.likeById(t.id)
         eventsInteractionApi.dislikeById(t.id)
-    }
-
-    override suspend fun save(r: EventCreateRequest) {
-
-        val saveResponse = eventsInteractionApi.save(r).body()
-        if (saveResponse != null)
-            eventEntityDao.insert(saveResponse.toEventEntity())
     }
 }

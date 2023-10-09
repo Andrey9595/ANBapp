@@ -44,6 +44,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 showProfileMenu(it)
             else showAuthMenu(it)
         }
+
+        binding.addBtn.setOnClickListener {
+            if (binding.viewPager.currentItem == 1)
+                findNavController().navigate(R.id.action_homeFragment_to_newEventFragment)
+        }
     }
 
     private fun showProfileMenu(view: View) {
