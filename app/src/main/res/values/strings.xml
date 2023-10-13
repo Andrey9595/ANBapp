@@ -24,4 +24,13 @@
     <string name="Link">Link</string>
     <string name="online">online</string>
     <string name="save">save</string>
+    <string name="job">job</string>
+    <string name="google_inc">google_inc</string>
+    <string name="position">position</string>
+    <string name="mob_developer">mob_developer</string>
+    <string name="start_job">start_job</string>
+    <string name="default_date">default_date</string>
+    <string name="end_job">end_job</string>
+    <string name="web_site">web_site</string>
+    <string name="google_com">google_com</string>
 </resources>

@@ -8,6 +8,8 @@ import ru.anb.myapplication.features.home.db.events.EventEntity
 import ru.anb.myapplication.features.home.db.events.EventEntityDao
 import ru.anb.myapplication.features.home.db.events.EventRemoteKeyDao
 import ru.anb.myapplication.features.home.db.events.EventRemoteKeyEntity
+import ru.anb.myapplication.features.home.db.job.JobEntity
+import ru.anb.myapplication.features.home.db.job.JobsDao
 import ru.anb.myapplication.features.home.db.posts.PostEntity
 import ru.anb.myapplication.features.home.db.posts.PostEntityDao
 import ru.anb.myapplication.features.home.db.posts.PostRemoteKeyDao
@@ -15,11 +17,11 @@ import ru.anb.myapplication.features.home.db.posts.PostRemoteKeyEntity
 
 @Database(
     entities = [
-        EventEntity::class, EventRemoteKeyEntity::class, PostEntity::class, PostRemoteKeyEntity::class
+        EventEntity::class, EventRemoteKeyEntity::class, PostEntity::class, PostRemoteKeyEntity::class, JobEntity::class
     ], version = 1, exportSchema = false
 )
-@TypeConverters(Convertor::class) 
-abstract class AppDatabase: RoomDatabase() {
+@TypeConverters(Convertor::class)
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getEventEntityDao(): EventEntityDao
 
@@ -28,4 +30,6 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun getPostEntityDao(): PostEntityDao
 
     abstract fun getPostRemoteKeyDao(): PostRemoteKeyDao
+
+    abstract fun getJobDao(): JobsDao
 }

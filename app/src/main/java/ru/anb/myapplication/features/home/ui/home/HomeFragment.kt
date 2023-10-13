@@ -25,7 +25,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val fragTitles = listOf(
         "Записи",
-        "Мероприятия"
+        "Мероприятия",
+        "Работы"
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

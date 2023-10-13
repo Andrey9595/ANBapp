@@ -10,9 +10,10 @@ import ru.anb.myapplication.features.home.data.posts.PostsApi
 import ru.anb.myapplication.features.home.db.posts.PostEntity
 import ru.anb.myapplication.features.home.db.posts.PostRemoteKeyEntity
 import java.io.IOException
+import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class PostsMediator (private val api: PostsApi, private val db: AppDatabase) :
+class PostsMediator @Inject constructor(private val api: PostsApi, private val db: AppDatabase) :
     RemoteMediator<Int, PostEntity>() {
 
     private val keyDao = db.getPostRemoteKeyDao()
