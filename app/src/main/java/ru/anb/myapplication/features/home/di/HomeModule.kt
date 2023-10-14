@@ -12,6 +12,8 @@ import ru.anb.myapplication.features.home.data.events.EventsMediator
 import ru.anb.myapplication.features.home.data.events.EventsPagingApi
 import ru.anb.myapplication.features.home.data.posts.PostsApi
 import ru.anb.myapplication.features.home.db.events.PostsMediator
+import ru.anb.myapplication.features.home.db.job.JobsApi
+import ru.anb.myapplication.features.home.db.job.JobsDao
 import ru.anb.myapplication.features.profile.domain.IsAuthorizedUseCase
 import ru.anb.myapplication.features.profile.domain.LogOutUseCase
 import javax.inject.Singleton
@@ -50,7 +52,7 @@ class HomeModule {
 
     @Provides
     @Singleton
-    fun providePostsMediator(api: PostsApi, db: AppDatabase): PostsMediator {
+    fun providePostsMediator(api: PostsApi, db: AppDatabase): PostsMediator { // TODO: remove]
         return PostsMediator(api, db)
     }
 
@@ -58,5 +60,17 @@ class HomeModule {
     @Singleton
     fun provideEventsInteractionApi(retrofit: Retrofit): EventsInteractionApi {
         return retrofit.create(EventsInteractionApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideJobsApi(retrofit: Retrofit): JobsApi {
+        return retrofit.create(JobsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideJobDao(appDatabase: AppDatabase): JobsDao {
+        return appDatabase.getJobDao()
     }
 }

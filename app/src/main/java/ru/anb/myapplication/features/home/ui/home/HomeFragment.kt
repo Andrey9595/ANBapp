@@ -25,7 +25,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val fragTitles = listOf(
         "Записи",
-        "Мероприятия"
+        "Мероприятия",
+        "Работы"
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,8 +47,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
         binding.addBtn.setOnClickListener {
-            if (binding.viewPager.currentItem == 1)
-                findNavController().navigate(R.id.action_homeFragment_to_newEventFragment)
+            when (binding.viewPager.currentItem) {
+                1 -> findNavController().navigate(R.id.action_homeFragment_to_newEventFragment)
+                2 -> findNavController().navigate(R.id.action_homeFragment_to_newJobFragment)
+            }
+
         }
     }
 

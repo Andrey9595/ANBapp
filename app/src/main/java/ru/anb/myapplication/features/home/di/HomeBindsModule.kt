@@ -5,8 +5,10 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.anb.myapplication.features.home.data.events.EventsRepositoryImpl
+import ru.anb.myapplication.features.home.db.job.JobRepositoryImpl
 import ru.anb.myapplication.features.home.db.posts.PostsRepositoryImpl
 import ru.anb.myapplication.features.home.domain.events.EventsRepository
+import ru.anb.myapplication.features.home.domain.job.JobRepository
 import ru.anb.myapplication.features.home.domain.posts.PostsRepository
 import ru.anb.myapplication.features.profile.domain.IsAuthorizedUseCase
 import ru.anb.myapplication.features.profile.domain.LogOutUseCase
@@ -26,4 +28,7 @@ abstract class HomeBindsModule {
 
     @Binds
     abstract fun bindLogOutUseCase(logOutUseCase: LogOutUseCase.Base): LogOutUseCase
+
+    @Binds
+    abstract fun bindJobRepository(jobRepositoryImpl: JobRepositoryImpl): JobRepository
 }
