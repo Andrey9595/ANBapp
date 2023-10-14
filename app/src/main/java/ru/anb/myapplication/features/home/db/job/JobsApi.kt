@@ -11,12 +11,12 @@ import ru.anb.myapplication.features.home.domain.model.job.JobResponse
 
 interface JobsApi {
 
-    @GET("{user_id}/jobs/")
+    @GET("/api/{user_id}/jobs/")
     suspend fun getJobsById(@Path("user_id") id: Long): Response<List<JobResponse>>
 
-    @POST("my/jobs/")
+    @POST("/api/my/jobs/")
     suspend fun createJob(@Body jobCreateRequest: JobCreateRequest): Response<JobResponse>
 
-    @DELETE("my/jobs/{job_id}/")
+    @DELETE("/api/my/jobs/{job_id}/")
     suspend fun removeById(@Path("job_id") id: Long): Response<Unit>
 }

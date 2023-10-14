@@ -13,6 +13,6 @@ data class JobResponse(
 ){
 
     fun toEntity(): JobEntity{
-        return JobEntity(id, userId,false, name, position, start, finish, link )
+        return JobEntity(userId, id,false, name, position, start, finish, link )
     }
 }

@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_homeFragment_to_newEventFragment"
             app:destination="@id/newEventFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newJobFragment"
+            app:destination="@id/newJobFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -41,4 +44,9 @@
         android:name="ru.anb.myapplication.features.newevent.ui.NewEventFragment"
         android:label="NewEventFragment"
         tools:layout="@layout/fragment_new_event"/>
+    <fragment
+        android:id="@+id/newJobFragment"
+        android:name="ru.anb.myapplication.features.home.ui.job.NewJobFragment"
+        android:label="fragment_new_job"
+        tools:layout="@layout/fragment_new_job" />
 </navigation>
