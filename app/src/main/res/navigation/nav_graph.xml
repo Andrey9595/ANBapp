@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_homeFragment_to_newJobFragment"
             app:destination="@id/newJobFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newPostFragment"
+            app:destination="@id/newPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -49,4 +52,9 @@
         android:name="ru.anb.myapplication.features.home.ui.job.NewJobFragment"
         android:label="fragment_new_job"
         tools:layout="@layout/fragment_new_job" />
+    <fragment
+        android:id="@+id/newPostFragment"
+        android:name="ru.anb.myapplication.features.newpost.ui.NewPostFragment"
+        android:label="fragment_new_post"
+        tools:layout="@layout/fragment_new_post" />
 </navigation>
