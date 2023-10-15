@@ -48,6 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         binding.addBtn.setOnClickListener {
             when (binding.viewPager.currentItem) {
+                0 -> findNavController().navigate(R.id.action_homeFragment_to_newPostFragment)
                 1 -> findNavController().navigate(R.id.action_homeFragment_to_newEventFragment)
                 2 -> findNavController().navigate(R.id.action_homeFragment_to_newJobFragment)
             }
