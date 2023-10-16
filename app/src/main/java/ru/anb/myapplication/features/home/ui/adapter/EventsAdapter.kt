@@ -71,10 +71,9 @@ class EventsViewHolder(
                                 true
                             }
 
-                            else -> {
-                                eventsInteractionListener.onEdit(item)
-                                true
-                            }
+                        else -> {
+                            true
+                        }
                         }
                     }
                 }

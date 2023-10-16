@@ -20,10 +20,6 @@ class EventsInteractionListener(private val viewModel: EventsViewModel) : Events
         else viewModel.like(t)
     }
 
-    override fun onEdit(t: EventsModel) {
-
-    }
-
     override fun onRemove(t: EventsModel) {
         TODO("Not yet implemented")
     }
