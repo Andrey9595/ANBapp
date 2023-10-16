@@ -1,6 +1,7 @@
 package ru.anb.myapplication.features.home.ui.events
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,9 @@ class EventsFragment : BaseFragment<FragmentEventsBinding>() {
         binding.eventsList.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
 
-            viewModel.sendGetAll().collectLatest { adapter.submitData(it) }
+            viewModel.sendGetAll().collectLatest {
+                Log.d("AAA", it.toString())
+                adapter.submitData(it) }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

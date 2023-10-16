@@ -10,6 +10,7 @@ import ru.anb.myapplication.features.auth.data.PersistentStore
 import ru.anb.myapplication.features.home.data.events.EventsInteractionApi
 import ru.anb.myapplication.features.home.data.events.EventsMediator
 import ru.anb.myapplication.features.home.data.events.EventsPagingApi
+import ru.anb.myapplication.features.home.data.posts.PostInteractionApi
 import ru.anb.myapplication.features.home.data.posts.PostsApi
 import ru.anb.myapplication.features.home.db.events.PostsMediator
 import ru.anb.myapplication.features.home.db.job.JobsApi
@@ -60,6 +61,12 @@ class HomeModule {
     @Singleton
     fun provideEventsInteractionApi(retrofit: Retrofit): EventsInteractionApi {
         return retrofit.create(EventsInteractionApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providePostInteractionApi(retrofit: Retrofit): PostInteractionApi {
+        return retrofit.create(PostInteractionApi::class.java)
     }
 
     @Provides

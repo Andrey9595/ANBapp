@@ -1,6 +1,7 @@
 package ru.anb.myapplication.features.home.ui.post
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,9 +25,12 @@ class PostFragment : BaseFragment<FragmentPostBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = PostsAdapter()
+        val adapter = PostsAdapter(PostInteractionListener(viewModel))
         binding.postsList.adapter = adapter
-        viewModel.getPagedPosts().onEach { adapter.submitData(it) }
+        viewModel.getPagedPosts().onEach {
+            Log.d("AAA", it.toString())
+            adapter.submitData(it)
+        }
             .launchIn(viewLifecycleOwner.lifecycleScope)
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collect {

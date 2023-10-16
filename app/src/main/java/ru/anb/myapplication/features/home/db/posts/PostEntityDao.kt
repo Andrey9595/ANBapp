@@ -18,8 +18,20 @@ interface PostEntityDao {
     suspend fun insert(posts: List<PostEntity>)
 
     @Query("SELECT * FROM PostEntity ORDER  BY id DESC")
-    fun  getPagingSource(): PagingSource<Int, PostEntity>
+    fun getPagingSource(): PagingSource<Int, PostEntity>
 
     @Query("DELETE FROM PostEntity")
     suspend fun clear()
+
+    @Query("DELETE FROM PostEntity WHERE id = :id")
+    suspend fun removeById(id: Long)
+
+    @Query(
+        """
+        UPDATE PostEntity SET
+        likedByMe = CASE WHEN likedByMe THEN 0 ELSE 1 END
+        WHERE  id = :id
+        """
+    )
+    suspend fun likeById(id: Long)
 }
