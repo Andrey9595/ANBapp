@@ -3,7 +3,7 @@ package ru.anb.myapplication.features.home.db.events
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.anb.myapplication.features.home.domain.model.Attachment
+import ru.anb.myapplication.features.home.domain.model.AttachmentModel
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 import ru.anb.myapplication.features.home.domain.model.UserPreview
 
@@ -26,7 +26,7 @@ data class EventEntity(
     val participantsIds: List<Long>,
     val participatedByMe: Boolean,
     @Embedded
-    val attachment: Attachment?,//
+    val attachment: AttachmentModel?,//
     val link: String?,
     val ownedByMe: Boolean,
     val users: Map<Long, UserPreview>

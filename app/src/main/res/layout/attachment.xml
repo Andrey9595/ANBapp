@@ -22,36 +22,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Аудиозапись"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginTop="8dp"
         app:icon="@drawable/baseline_audio_file_24"
          />
 
-    <FrameLayout
-        android:id="@+id/videoGroup"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageView
+        <VideoView
+            android:visibility="gone"
             android:id="@+id/attachVideo"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginTop="8dp"
 
             />
-
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/videoPlayBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.Material3.Button.IconButton.Filled"
-            android:layout_gravity="center"
-            app:icon="@drawable/ic_baseline_play_circle_24"
-            />
-    </FrameLayout>
 
 
 
