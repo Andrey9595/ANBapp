@@ -1,18 +1,23 @@
 package ru.anb.myapplication.features.home.ui.adapter
 
+import android.media.MediaPlayer
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.net.toUri
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.anb.myapplication.R
 import ru.anb.myapplication.core.extensions.asString
+import ru.anb.myapplication.core.extensions.load
 import ru.anb.myapplication.core.extensions.toLocalDateTime
 import ru.anb.myapplication.databinding.CardEventBinding
 import ru.anb.myapplication.features.home.domain.events.EventsInteraction
+import ru.anb.myapplication.features.home.domain.model.AttachmentType
 import ru.anb.myapplication.features.home.domain.model.EventsModel
 
 class EventsAdapter(private val eventsInteractionListener: EventsInteraction) :
@@ -37,6 +42,35 @@ class EventsViewHolder(
 
     fun bind(item: EventsModel) {
         with(binding) {
+            if (item.attachment != null && item.attachment.url.startsWith("http", false)) {
+                attachLayout.root.visibility = View.VISIBLE
+                when (item.attachment.attachmentType) {
+                    AttachmentType.IMAGE -> {
+                        attachLayout.attachImage.visibility = View.VISIBLE
+                        attachLayout.attachImage.load(item.attachment.url)
+                    }
+
+                    AttachmentType.VIDEO -> {
+                        attachLayout.attachAudio.visibility = View.VISIBLE
+                        attachLayout.attachVideo.setVideoURI(item.attachment.url.toUri())
+                        attachLayout.attachVideo.start()
+                    }
+
+                    AttachmentType.AUDIO -> {
+                        val mediaPlayer = MediaPlayer()
+                        attachLayout.attachAudio.setOnClickListener {
+                            if (!mediaPlayer.isPlaying) {
+                                mediaPlayer.setDataSource(
+                                    binding.root.context,
+                                    item.attachment.url.toUri()
+                                )
+                                mediaPlayer.prepare()
+                                mediaPlayer.start()
+                            }
+                        }
+                    }
+                }
+            }
             name.text = item.author
             published.text = item.published.take(19).toLocalDateTime().asString()
             content.text = item.content
@@ -71,9 +105,9 @@ class EventsViewHolder(
                                 true
                             }
 
-                        else -> {
-                            true
-                        }
+                            else -> {
+                                true
+                            }
                         }
                     }
                 }
