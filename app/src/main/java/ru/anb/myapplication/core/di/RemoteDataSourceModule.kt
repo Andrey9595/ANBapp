@@ -9,7 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.anb.myapplication.features.auth.data.PersistentStore
-import ru.anb.myapplication.features.home.data.events.AuthInterceptor
+import ru.anb.myapplication.features.events.data.AuthInterceptor
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
