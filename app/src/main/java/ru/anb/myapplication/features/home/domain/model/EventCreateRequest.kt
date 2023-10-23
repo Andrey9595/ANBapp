@@ -6,7 +6,7 @@ data class EventCreateRequest (
     val datetime: String,
 //    val coords: CoordinatesModel?,
     val type: String = "ONLINE",
-//    val attachment: Attachment?,
+    val attachment: AttachmentModel?,
     val link: String = "www",
     val speakerIds: List<Long> = emptyList()
 )

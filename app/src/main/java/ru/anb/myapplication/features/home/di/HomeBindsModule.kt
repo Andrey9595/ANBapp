@@ -4,12 +4,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.anb.myapplication.features.home.data.events.EventsRepositoryImpl
+import ru.anb.myapplication.features.events.data.EventsRepositoryImpl
+import ru.anb.myapplication.features.events.domain.EventsRepository
 import ru.anb.myapplication.features.home.db.job.JobRepositoryImpl
-import ru.anb.myapplication.features.home.db.posts.PostsRepositoryImpl
-import ru.anb.myapplication.features.home.domain.events.EventsRepository
 import ru.anb.myapplication.features.home.domain.job.JobRepository
-import ru.anb.myapplication.features.home.domain.posts.PostsRepository
+import ru.anb.myapplication.features.posts.db.PostsRepositoryImpl
+import ru.anb.myapplication.features.posts.domain.PostsRepository
 import ru.anb.myapplication.features.profile.domain.IsAuthorizedUseCase
 import ru.anb.myapplication.features.profile.domain.LogOutUseCase
 

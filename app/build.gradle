@@ -106,4 +106,8 @@ dependencies {
 
     // GSON
     implementation 'com.google.code.gson:gson:2.9.0'
+
+   //Imagepicker_version
+    def imagepicker_version = "2.1"
+    implementation "com.github.dhaval2404:imagepicker:$imagepicker_version"
 }

@@ -1,6 +1,6 @@
 package ru.anb.myapplication.features.newpost.domain.model
 
-import ru.anb.myapplication.features.home.domain.model.Attachment
+import ru.anb.myapplication.features.home.domain.model.AttachmentModel
 import ru.anb.myapplication.features.home.domain.model.UserPreview
 
 data class PostResponse(
@@ -17,7 +17,7 @@ data class PostResponse(
     val mentionIds: List<Long>,
     val mentionMe: Boolean,
     val likedByMe: Boolean,
-    val attachment: Attachment?,
+    val attachment: AttachmentModel?,
     val ownedByMe: Boolean,
     val users: Map<Long, UserPreview>
 )

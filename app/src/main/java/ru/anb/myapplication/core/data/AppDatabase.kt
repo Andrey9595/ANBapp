@@ -3,17 +3,17 @@ package ru.anb.myapplication.core.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import ru.anb.myapplication.features.events.db.EventEntity
+import ru.anb.myapplication.features.events.db.EventEntityDao
+import ru.anb.myapplication.features.events.db.EventRemoteKeyDao
+import ru.anb.myapplication.features.events.db.EventRemoteKeyEntity
 import ru.anb.myapplication.features.home.db.Convertor
-import ru.anb.myapplication.features.home.db.events.EventEntity
-import ru.anb.myapplication.features.home.db.events.EventEntityDao
-import ru.anb.myapplication.features.home.db.events.EventRemoteKeyDao
-import ru.anb.myapplication.features.home.db.events.EventRemoteKeyEntity
 import ru.anb.myapplication.features.home.db.job.JobEntity
 import ru.anb.myapplication.features.home.db.job.JobsDao
-import ru.anb.myapplication.features.home.db.posts.PostEntity
-import ru.anb.myapplication.features.home.db.posts.PostEntityDao
-import ru.anb.myapplication.features.home.db.posts.PostRemoteKeyDao
-import ru.anb.myapplication.features.home.db.posts.PostRemoteKeyEntity
+import ru.anb.myapplication.features.posts.db.PostEntity
+import ru.anb.myapplication.features.posts.db.PostEntityDao
+import ru.anb.myapplication.features.posts.db.PostRemoteKeyDao
+import ru.anb.myapplication.features.posts.db.PostRemoteKeyEntity
 
 @Database(
     entities = [
