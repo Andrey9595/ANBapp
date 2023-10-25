@@ -9,11 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.anb.myapplication.R
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentAuthBinding
 
@@ -52,13 +53,20 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.authState.collect {
                     when (it) {
-                        is LoadState.Loading -> {}
-                        is LoadState.Success -> {
-                            findNavController().navigate(R.id.homeFragment)
+                        is AppLoadState.Loading -> {}
+                        is AppLoadState.Success -> {
+                            findNavController().navigate(
+                                R.id.homeFragment, null, NavOptions.Builder()
+                                    .setPopUpTo(
+                                        destinationId = R.id.homeFragment,
+                                        inclusive = true,
+                                    )
+                                    .build()
+                            )
                         }
 
-                        is LoadState.Error -> {
-                            Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
+                        is AppLoadState.Error -> {
+                            Toast.makeText(requireContext(), it.asString(requireContext()), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

@@ -24,9 +24,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val viewModel: HomeViewModel by viewModels()
 
     private val fragTitles = listOf(
-        "Записи",
-        "Мероприятия",
-        "Работы"
+        R.string.posts,
+        R.string.events,
+        R.string.jobs
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, pos ->
-            tab.text = fragTitles[pos]
+            tab.text = getString(fragTitles[pos])
         }.attach()
 
         binding.includedAppBar.appBarImage.setOnClickListener {

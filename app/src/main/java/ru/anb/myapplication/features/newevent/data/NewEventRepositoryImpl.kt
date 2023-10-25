@@ -3,7 +3,7 @@ package ru.anb.myapplication.features.newevent.data
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import ru.anb.myapplication.R
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.features.home.domain.model.AttachmentModel
 import ru.anb.myapplication.features.home.domain.model.AttachmentType
 import ru.anb.myapplication.features.home.domain.model.EventCreateRequest
@@ -19,7 +19,7 @@ class NewEventRepositoryImpl @Inject constructor(private val newEventApi: NewEve
         eventCreateRequest: EventCreateRequest,
         upload: MediaUpload?,
         type: AttachmentType?
-    ): LoadState<Unit> {
+    ): AppLoadState<Unit> {
         val eventWithAttachment = upload?.let {
             upload(it)
         }?.let {
@@ -32,8 +32,8 @@ class NewEventRepositoryImpl @Inject constructor(private val newEventApi: NewEve
         }
         val result = newEventApi.save(eventWithAttachment ?: eventCreateRequest)
 
-        return if (result.isSuccessful) LoadState.Success(Unit)
-        else LoadState.Error(R.string.auth_error_message)
+        return if (result.isSuccessful) AppLoadState.Success(Unit)
+        else AppLoadState.Error(R.string.auth_error_message)
 
     }
 
@@ -42,9 +42,6 @@ class NewEventRepositoryImpl @Inject constructor(private val newEventApi: NewEve
             "file", upload.file.name, upload.file.asRequestBody()
         )
         val response = newEventApi.upload(media)
-//        if (!response.isSuccessful) {
-//            throw IOException(response.message())
-//        }
         return response.body() ?: throw IOException(response.message())
     }
 }

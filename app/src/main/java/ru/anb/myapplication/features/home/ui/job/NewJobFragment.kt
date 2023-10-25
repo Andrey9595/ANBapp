@@ -17,7 +17,7 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentNewJobBinding
 import ru.anb.myapplication.features.home.domain.model.job.JobCreateRequest
@@ -39,12 +39,12 @@ class NewJobFragment : BaseFragment<FragmentNewJobBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.jobCreateState.collect {
-                    binding.progress.progress.isVisible = it is LoadState.Loading
+                    binding.progress.progress.isVisible = it is AppLoadState.Loading
                     when (it) {
-                        is LoadState.Success -> findNavController().navigateUp()
-                        is LoadState.Error -> Toast.makeText(
+                        is AppLoadState.Success -> findNavController().navigateUp()
+                        is AppLoadState.Error -> Toast.makeText(
                             requireContext(),
-                            it.error,
+                            it.asString(requireContext()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -65,7 +65,7 @@ class NewJobFragment : BaseFragment<FragmentNewJobBinding>() {
             val position = binding.positionEditText.text.toString()
             val web = binding.linkEditText.text.toString()
             val newCreateRequest = JobCreateRequest(
-                (1L..100000L).random(), jobText, position, binding.startJobEditText.text.toString(),
+                0L, jobText, position, binding.startJobEditText.text.toString(),
                 binding.endJobEditText.text.toString(), web
             )
             viewModel.create(newCreateRequest)
@@ -86,7 +86,7 @@ class NewJobFragment : BaseFragment<FragmentNewJobBinding>() {
             val date = LocalDateTime.ofEpochSecond(it / 1000, 0, ZoneOffset.UTC)
             editText.setText(date.format(DateTimeFormatter.ISO_DATE))
         }
-        datePicker.show(parentFragmentManager, "show")
+        datePicker.show(parentFragmentManager, null)
     }
 }
 

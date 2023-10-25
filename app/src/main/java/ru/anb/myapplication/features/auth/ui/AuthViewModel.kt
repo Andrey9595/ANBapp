@@ -7,21 +7,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.anb.myapplication.core.domain.LoadState
-import ru.anb.myapplication.features.auth.domain.AuthUseCase
+import ru.anb.myapplication.core.domain.AppLoadState
+import ru.anb.myapplication.features.auth.domain.SignInUseCase
 import ru.anb.myapplication.features.auth.domain.model.Token
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) :
+class AuthViewModel @Inject constructor(private val signInUseCase: SignInUseCase) :
     ViewModel() {
 
-    private val _authState = MutableStateFlow<LoadState<Token>>(LoadState.NotLoadedYet())
+    private val _authState = MutableStateFlow<AppLoadState<Token>>(AppLoadState.NotLoadedYet())
     val authState get() = _authState.asStateFlow()
 
     fun sendAuthRequest(login: String, password: String) {
         viewModelScope.launch {
-            val result = authUseCase.signIn(login, password)
+            val result = signInUseCase.signIn(login, password)
             _authState.value = result
         }
     }

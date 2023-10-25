@@ -33,4 +33,22 @@
     <string name="end_job">end_job</string>
     <string name="web_site">web_site</string>
     <string name="google_com">google_com</string>
+    <string name="share_name">%1%s делится мероприятием:\n
+                        %2%s \n.
+                        Начало %3%s \n
+                        вложение: %4%s \n
+                        сайт: %5%s\n
+                        отправлено из ANBApp.\n
+                        чтобы скачать приложение пройдите по ссылке: \n
+                       %6%s</string>
+    <string name="post_name">%1%s делится постом:\n
+                        %2%s \n.
+                        вложение: %3%s \n
+                        сайт: %4%s\n
+                        отправлено из ANBApp.\n
+                        чтобы скачать приложение пройдите по ссылке: \n
+                        %5%s</string>
+    <string name="posts">posts</string>
+    <string name="events">events</string>
+    <string name="jobs">jobs</string>
 </resources>

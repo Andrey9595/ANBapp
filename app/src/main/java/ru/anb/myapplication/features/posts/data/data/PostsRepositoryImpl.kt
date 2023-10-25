@@ -1,4 +1,4 @@
-package ru.anb.myapplication.features.posts.db
+package ru.anb.myapplication.features.posts.data.data
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -8,6 +8,7 @@ import androidx.paging.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.anb.myapplication.core.data.AppDatabase
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.features.events.db.PostsMediator
 import ru.anb.myapplication.features.home.domain.model.PostModel
 import ru.anb.myapplication.features.posts.data.PostInteractionApi
@@ -30,11 +31,13 @@ class PostsRepositoryImpl @Inject constructor(
         ).flow.map { it.map { posts -> posts.toPostModel() } }
     }
 
-    override suspend fun remove(id: Long) {
+    override suspend fun remove(id: Long): AppLoadState<Unit> {
 
         val result = postInteractionApi.removeById(id)
-        if (result.isSuccessful)
+        return if (result.isSuccessful) {
             postEntityDao.removeById(id)
+            AppLoadState.Success(Unit)
+        } else AppLoadState.Error(msgString = result.errorBody()?.string())
     }
 
     override suspend fun likeById(t: PostModel) {

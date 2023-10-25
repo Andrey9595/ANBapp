@@ -11,7 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentNewPostBinding
 import ru.anb.myapplication.features.newpost.domain.model.PostRequest
@@ -29,7 +29,7 @@ class NewPostFragment : BaseFragment<FragmentNewPostBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.newPostState.collect {
-                    if (it is LoadState.Success) findNavController().popBackStack()
+                    if (it is AppLoadState.Success) findNavController().popBackStack()
                 }
             }
         }

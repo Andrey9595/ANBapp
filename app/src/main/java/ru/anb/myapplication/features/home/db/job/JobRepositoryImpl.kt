@@ -3,7 +3,7 @@ package ru.anb.myapplication.features.home.db.job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.anb.myapplication.R
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.features.home.domain.job.JobRepository
 import ru.anb.myapplication.features.home.domain.model.job.JobCreateRequest
 import ru.anb.myapplication.features.home.domain.model.job.JobModel
@@ -23,12 +23,12 @@ class JobRepositoryImpl @Inject constructor(
             jobsDao.insert(response.map { it.toEntity() })
     }
 
-    override suspend fun addJob(jobRequest: JobCreateRequest): LoadState<Unit> {
+    override suspend fun addJob(jobRequest: JobCreateRequest): AppLoadState<Unit> {
         val jobResponse = jobsApi.createJob(jobRequest).body()
         return if (jobResponse != null) {
             jobsDao.insert(jobResponse.toEntity())
-            LoadState.Success(Unit)
-        } else LoadState.Error(R.string.name_error)
+            AppLoadState.Success(Unit)
+        } else AppLoadState.Error(R.string.name_error)
     }
 
     override suspend fun removeJob(id: Long) {
