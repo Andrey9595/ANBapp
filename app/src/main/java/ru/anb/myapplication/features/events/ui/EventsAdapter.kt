@@ -1,7 +1,6 @@
 package ru.anb.myapplication.features.events.ui
 
 import android.media.MediaPlayer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,7 +77,6 @@ class EventsViewHolder(
             webText.text = item.link
             typeOfEvent.text = item.type
             speakers.text = item.speakerIds.map { item.users[it]?.name }.joinToString(", ")
-            Log.d("aaa", "is liked = ${item.likedByMe}")
             interactionPosts.likeBtn.text = item.likeOwnerIds.size.toString()
 
             interactionPosts.likeBtn.setOnClickListener {
@@ -90,7 +88,7 @@ class EventsViewHolder(
                 eventsInteractionListener.onTakePartBtn(item)
             }
             interactionPosts.shareBtn.setOnClickListener {
-                val intent = eventsInteractionListener.onShare(item)
+                val intent = eventsInteractionListener.onShare(binding.root.context,item)
                 binding.root.context.startActivity(intent)
             }
             Glide.with(avatar.context).load(item.authorAvatar).circleCrop()
@@ -110,7 +108,7 @@ class EventsViewHolder(
                             }
                         }
                     }
-                }
+                }.show()
             }
         }
     }

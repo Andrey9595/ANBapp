@@ -1,10 +1,10 @@
 package ru.anb.myapplication.features.posts.ui
 
 import android.media.MediaPlayer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -38,6 +38,23 @@ class PostsViewHolder(
     RecyclerView.ViewHolder(binding.root) {
     fun bind(item: PostModel) {
         with(binding) {
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.options_post)
+                    setOnMenuItemClickListener { itemMenu ->
+                        when (itemMenu.itemId) {
+                            R.id.remove -> {
+                                postInteractionListener.onRemove(item)
+                                true
+                            }
+
+                            else -> {
+                                true
+                            }
+                        }
+                    }
+                }.show()
+            }
             if (item.attachment != null && item.attachment.url.startsWith("http", false)) {
                 attachLayout.root.visibility = View.VISIBLE
                 when (item.attachment.attachmentType) {
@@ -70,7 +87,6 @@ class PostsViewHolder(
             } else {
                 binding.attachLayout.root.visibility = View.GONE
             }
-            Log.d("aaa", "is liked = ${item.likedByMe}")
             name.text = item.author
             published.text = item.published?.take(19)?.toLocalDateTime()?.asString()
             content.text = item.content
@@ -82,11 +98,8 @@ class PostsViewHolder(
                 isChecked = item.likedByMe
                 text = (item.likeOwnerIds?.size ?: 0).toString()
             }
-            menu.setOnClickListener {
-                postInteractionListener.onRemove(item)
-            }
             interactionPosts.shareBtn.setOnClickListener {
-                val intent = postInteractionListener.onShare(item)
+                val intent = postInteractionListener.onShare(binding.root.context, item)
                 binding.root.context.startActivity(intent)
             }
             interactionPosts.mentioned.text = item.mentionIds.size.toString()

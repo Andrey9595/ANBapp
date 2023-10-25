@@ -1,6 +1,9 @@
 package ru.anb.myapplication.features.posts.ui
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import ru.anb.myapplication.R
 import ru.anb.myapplication.features.home.domain.model.PostModel
 import ru.anb.myapplication.features.posts.domain.PostInteraction
 
@@ -17,7 +20,8 @@ class PostInteractionListener(private val postsViewModel: PostsViewModel) : Post
         postsViewModel.removePost(t)
     }
 
-    override fun onShare(t: PostModel): Intent {
+    @SuppressLint("StringFormatMatches")
+    override fun onShare(c: Context, t: PostModel): Intent {
         val intent = Intent().apply {
             action = Intent.ACTION_SEND
 
@@ -25,17 +29,9 @@ class PostInteractionListener(private val postsViewModel: PostsViewModel) : Post
             val content = t.content
             val attach = t.attachment?.url ?: ""
             val link = t.link ?: ""
-//            val format = t.type
             val downloadLink = "https://"
-            val msg =
-                "$author делится постом:\n" +
-                        "$content \n." +
-//                        "Формат мероприятия: $format\n"+
-                        "вложение: $attach \n" +
-                        "сайт: $link\n" +
-                        "отправлено из NeWork App.\n" +
-                        "чтобы скачать приложение пройдите по ссылке: \n" +
-                        downloadLink
+            val msg = c.getString(R.string.post_name, author, content, attach, link, downloadLink)
+
 
             putExtra(Intent.EXTRA_TEXT, msg)
             type = "text/plain"

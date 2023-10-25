@@ -142,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/google_com"
                 android:textStyle="bold"
+                android:autoLink="web"
                 app:layout_constraintStart_toStartOf="@+id/jobName"
                 app:layout_constraintTop_toTopOf="@+id/textView4" />
 

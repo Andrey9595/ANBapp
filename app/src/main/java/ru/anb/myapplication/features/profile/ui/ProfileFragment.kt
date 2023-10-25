@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.anb.myapplication.R
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentProfileBinding
 
@@ -32,8 +32,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.userState.collect {
                     when (it) {
-                        is LoadState.Loading -> {}
-                        is LoadState.Success -> {
+                        is AppLoadState.Loading -> {}
+                        is AppLoadState.Success -> {
                             binding.userLogin.text = it.data.login
                             binding.userName.text = it.data.name
                             Glide.with(binding.userAvatar)
@@ -43,8 +43,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                                 .into(binding.userAvatar)
                         }
 
-                        is LoadState.Error -> {
-                            Toast.makeText(requireContext(), it.error, Toast.LENGTH_LONG).show()
+                        is AppLoadState.Error -> {
+                            Toast.makeText(requireContext(), it.asString(requireContext()), Toast.LENGTH_LONG).show()
                         }
                     }
                 }

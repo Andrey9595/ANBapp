@@ -160,6 +160,7 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:autoLink="web"
                         android:text="https://hd.kinopoisk.ru/"
                         android:textStyle="italic|bold" />
 

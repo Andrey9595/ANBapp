@@ -20,9 +20,7 @@ interface EventsInteractionApi {
     @DELETE("api/events/{event_id}/participants")
     suspend fun removeParticipant(@Path("event_id") id: Long) :Response<EventsModel>
 
+    @DELETE("api/events/{event_id}")
+    suspend fun removeById(@Path("event_id") id: Long): Response<Unit>
 
-
-//    @Multipart
-//    @POST("media")
-//    suspend fun upload(@Part media: MultipartBody.Part): Response<Media>
 }

@@ -100,79 +100,6 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Режим мероприятия:"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                />
-
-            <RadioGroup
-                android:id="@+id/radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="8dp"
-                >
-
-                <RadioButton
-                    android:id="@+id/offLineBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="Оффлайн" />
-
-                <RadioButton
-                    android:id="@+id/onLineBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/online" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:id="@+id/locationGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:orientation="horizontal"
-                >
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/locationEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:clickable="false"
-                        android:editable="false"
-                        android:hint="@string/Location"
-
-
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/placeBtn"
-                    style="@style/Widget.Material3.Button.IconButton.Filled"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    app:icon="@drawable/ic_baseline_add_location_24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dateEditText" />
-
-            </LinearLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -191,66 +118,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/speakersTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Спикеры:"
-                    android:layout_gravity="top"
-                    android:textStyle="bold"
-
-
-                    />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/addSpeakerBtn"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="назначить"
-                    android:layout_gravity="end"
-                    app:icon="@drawable/ic_baseline_alternate_email_24"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/speakersRecView"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    app:spanCount="3"
-                    android:textSize="12sp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-
-                    />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/clearUsersAdded"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:icon="@drawable/ic_baseline_clear_24"
-                    style="@style/Widget.Material3.Button.IconButton"
-                    android:layout_gravity="end"/>
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -260,11 +127,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/photo"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_gravity="center" />
 
                     <include
                         android:id="@+id/audioContainer"
@@ -285,14 +147,6 @@
                         android:layout_marginTop="4dp"
                         android:visibility="gone" />
 
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/clearPicBtn"
-                        style="@style/Widget.Material3.Button.IconButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|top"
-                        app:icon="@drawable/ic_baseline_delete_24" />
                 </FrameLayout>
 
             </LinearLayout>

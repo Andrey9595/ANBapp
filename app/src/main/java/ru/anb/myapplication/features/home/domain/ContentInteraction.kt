@@ -1,5 +1,6 @@
 package ru.anb.myapplication.features.home.domain
 
+import android.content.Context
 import android.content.Intent
 
 interface ContentInteraction<T: Any> {
@@ -8,5 +9,5 @@ interface ContentInteraction<T: Any> {
 
     fun onRemove(t: T)
 
-    fun onShare(t: T): Intent
+    fun onShare(c: Context, t: T): Intent
 }

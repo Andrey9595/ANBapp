@@ -9,5 +9,4 @@ interface PostsRepository : BaseContentCRUD<PostModel> {
 
     fun getPagedPosts(): Flow<PagingData<PostModel>>
 
-   suspend fun remove(id: Long)
 }

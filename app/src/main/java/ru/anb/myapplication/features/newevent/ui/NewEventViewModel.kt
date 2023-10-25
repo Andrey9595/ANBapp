@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.features.home.domain.model.AttachmentType
 import ru.anb.myapplication.features.home.domain.model.EventCreateRequest
 import ru.anb.myapplication.features.home.domain.model.MediaUpload
@@ -19,7 +19,7 @@ import javax.inject.Inject
 class NewEventViewModel @Inject constructor(private val newEventsRepository: NewEventsRepository) :
     ViewModel() {
 
-    private val _newEventState = MutableStateFlow<LoadState<Unit>>(LoadState.NotLoadedYet())
+    private val _newEventState = MutableStateFlow<AppLoadState<Unit>>(AppLoadState.NotLoadedYet())
     val newEventState get() = _newEventState.asStateFlow()
 
     fun save(createRequest: EventCreateRequest, uri: Uri, type: AttachmentType?) {

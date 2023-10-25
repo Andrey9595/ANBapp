@@ -20,7 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ru.anb.myapplication.core.domain.LoadState
+import ru.anb.myapplication.core.domain.AppLoadState
 import ru.anb.myapplication.core.ui.BaseFragment
 import ru.anb.myapplication.databinding.FragmentNewEventBinding
 import ru.anb.myapplication.features.home.domain.model.AttachmentModel
@@ -46,7 +46,7 @@ class NewEventFragment : BaseFragment<FragmentNewEventBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.newEventState.collect {
-                    if (it is LoadState.Success) findNavController().popBackStack()
+                    if (it is AppLoadState.Success) findNavController().popBackStack()
                 }
             }
         }
@@ -67,11 +67,11 @@ class NewEventFragment : BaseFragment<FragmentNewEventBinding>() {
         }
 
         binding.dateEditText.setOnFocusChangeListener { v, isFOcused ->
-            if (isFOcused) datePicker.show(parentFragmentManager, "datePicker")
+            if (isFOcused) datePicker.show(parentFragmentManager, null)
         }
 
         binding.timeEditText.setOnFocusChangeListener { v, isFOcused ->
-            if (isFOcused) timePicker.show(parentFragmentManager, "timePicker")
+            if (isFOcused) timePicker.show(parentFragmentManager, null)
         }
 
         val pickPhotoLauncher =
